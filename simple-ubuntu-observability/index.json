@@ -1,5 +1,11 @@
 {
-  "title": "simple-ubuntu-observability",
+  "title": "simple observability",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh"
+    }
+  },
   "backend": {
     "imageid": "ubuntu"
   }
