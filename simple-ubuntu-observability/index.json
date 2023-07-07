@@ -1,0 +1,6 @@
+{
+  "title": "simple-ubuntu-observability",
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
