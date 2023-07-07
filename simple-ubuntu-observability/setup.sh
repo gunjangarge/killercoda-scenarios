@@ -1,4 +1,5 @@
 # Create config file for pushgw
+mkdir /tmp/setup
 cat <<EOF >/tmp/setup/prometheus.yaml
 global:
   scrape_interval: 15s
