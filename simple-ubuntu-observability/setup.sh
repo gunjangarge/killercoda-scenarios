@@ -1,5 +1,5 @@
 # Create config file for pushgw
-cat <<EOF >/tmp/prometheus.yaml
+cat <<EOF >/tmp/setup/prometheus.yaml
 global:
   scrape_interval: 15s
   scrape_timeout: 1s
@@ -22,6 +22,6 @@ scrape_configs:
 EOF
 docker run -d --name=grafana -p 3000:3000 grafana/grafana
 docker run -d --name pushgw -p 9091:9091 prom/pushgateway
-docker run -d --name=prom -p 9090:9090 -v /tmp/prometheus.yaml:/etc/prometheus/prometheus.yml prom/prometheus
+docker run -d --name=prom -p 9090:9090 -v /tmp/setup/prometheus.yaml:/etc/prometheus/prometheus.yml prom/prometheus
 docker run --cap-add=SYS_TIME -d --net="host" --pid="host" -p 9100:9100 --name=nodeexporter -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest
 echo "Done" > /tmp/done.txt
