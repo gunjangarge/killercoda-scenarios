@@ -1,15 +1,15 @@
 mkdir /tmp/setup
 
 # install terraform
-apt-get update && sudo apt-get install -y gnupg software-properties-common
+apt-get update -y && sudo apt-get install -y gnupg software-properties-common
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
-apt update
-apt-get install terraform
+apt update -y
+apt-get install terraform -y
 
 # install ansible
 apt-add-repository ppa:ansible/ansible
-apt update
-apt install ansible
+apt update -y
+apt install ansible -y
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
