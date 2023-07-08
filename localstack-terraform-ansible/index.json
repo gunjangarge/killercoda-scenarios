@@ -1,5 +1,5 @@
 {
-  "title": "localstack terraform ansible",
+  "title": "localstack terraform ansible awscli",
   "details": {
     "intro": {
       "text": "intro.md",
