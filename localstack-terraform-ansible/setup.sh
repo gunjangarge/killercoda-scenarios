@@ -140,7 +140,17 @@ unzip awscliv2.zip
 export AWS_ACCESS_KEY_ID="test"
 export AWS_SECRET_ACCESS_KEY="test"
 export AWS_DEFAULT_REGION="us-east-1"
-alias aws='aws --endpoint-url=http://localhost:4566'
+cat <<EOF > ~/.aws/config
+[default]
+region = us-east-1
+output = json
+EOF
+cat <<EOF > ~/.aws/credentials
+[default]
+aws_access_key_id = test
+aws_secret_access_key = test
+EOF
+echo "alias aws='aws --endpoint-url=http://localhost:4566'" >> ~/.bash_aliases
 
 # Done
 echo "Done" > /tmp/setup/done.txt
