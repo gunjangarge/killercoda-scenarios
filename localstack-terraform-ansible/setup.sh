@@ -1,4 +1,4 @@
-mkdir /tmp/setup
+mkdir /tmp/setup ~/.aws
 
 # install terraform
 apt-get update -y && sudo apt-get install -y gnupg software-properties-common
