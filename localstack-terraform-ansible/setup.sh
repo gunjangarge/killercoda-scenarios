@@ -11,7 +11,6 @@ apt install ansible
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
-echo "Done" > /tmp/setup/done.txt
 
 # copy localstack terraform provider
 mkdir -p /opt/terraform
@@ -128,6 +127,7 @@ provider "aws" {
   }
 }
 EOF
+
 cp /opt/terraform/provider.tf /tmp/provider.tf
 
 # install aws cli v2
@@ -139,3 +139,6 @@ export AWS_ACCESS_KEY_ID="test"
 export AWS_SECRET_ACCESS_KEY="test"
 export AWS_DEFAULT_REGION="us-east-1"
 alias aws='aws --endpoint-url=http://localhost:4566'
+
+# Done
+echo "Done" > /tmp/setup/done.txt
