@@ -1,3 +1,5 @@
+mkdir /tmp/setup
+
 # install terraform
 apt-get update && sudo apt-get install -y gnupg software-properties-common
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
@@ -128,7 +130,7 @@ provider "aws" {
 }
 EOF
 
-cp /opt/terraform/provider.tf /tmp/provider.tf
+cp /opt/terraform/provider.tf /tmp/setup/provider.tf
 
 # install aws cli v2
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
