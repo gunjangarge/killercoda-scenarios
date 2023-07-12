@@ -20,7 +20,6 @@ scrape_configs:
   - targets: ['172.30.1.2:9100']
     labels:
       service: 'node-exporter'
-
 EOF
 
 cat <<EOF >/tmp/setup/datasource.yaml
@@ -35,6 +34,7 @@ EOF
 wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml -P /tmp/setup
 sed -i -e 's/        - --metric-resolution=15s/        - --metric-resolution=15s\n        - --kubelet-insecure-tls/g' components.yaml
 kubectl apply -f /tmp/setup/components.yaml
+
 
 docker run -d --name=grafana -p 3000:3000 -v /tmp/setup/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yml grafana/grafana
 docker run -d --name pushgw -p 9091:9091 prom/pushgateway
