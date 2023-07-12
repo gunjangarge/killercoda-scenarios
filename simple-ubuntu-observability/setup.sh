@@ -44,9 +44,9 @@ datasources:
    version: 1
 EOF
 
-cat ~/.kube/config |grep certificate-authority-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/ca.crt
-cat ~/.kube/config |grep client-certificate-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/user.crt
-cat ~/.kube/config |grep client-key-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/user.key
+cat ~/.kube/config |grep certificate-authority-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/certs/ca.crt
+cat ~/.kube/config |grep client-certificate-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/certs/user.crt
+cat ~/.kube/config |grep client-key-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/certs/user.key
 
 wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 sed -i -e 's/        - --metric-resolution=15s/        - --metric-resolution=15s\n        - --kubelet-insecure-tls/g' components.yaml
