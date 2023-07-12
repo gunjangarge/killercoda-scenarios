@@ -43,6 +43,7 @@ datasources:
    url: http://172.30.1.2:9090
    version: 1
 EOF
+
 cat ~/.kube/config |grep certificate-authority-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/ca.crt
 cat ~/.kube/config |grep client-certificate-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/user.crt
 cat ~/.kube/config |grep client-key-data |cut -f2 -d':'|tr -d ' ' | base64 -d > /tmp/setup/user.key

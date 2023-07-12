@@ -1,0 +1,13 @@
+{
+  "title": "localstack terraform ansible awscli",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh",
+      "foreground": "progress.sh"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu-4GB"
+  }
+}
