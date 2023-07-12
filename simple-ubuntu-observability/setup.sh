@@ -32,7 +32,7 @@ scrape_configs:
       ca_file: /k8s/certs/ca.crt
       cert_file: /k8s/certs/user.crt
       key_file: /k8s/certs/user.key
-      insecure_skip_verify: false
+      insecure_skip_verify: true
 EOF
 
 cat <<EOF >/tmp/setup/datasource.yaml
