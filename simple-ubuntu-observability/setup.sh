@@ -1,5 +1,5 @@
 # Create config file for pushgw
-mkdir /tmp/setup
+mkdir /tmp/setup ~/.vnc
 cat <<EOF >/tmp/setup/prometheus.yaml
 global:
   scrape_interval: 15s
