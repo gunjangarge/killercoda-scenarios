@@ -45,6 +45,7 @@ docker run --cap-add=SYS_TIME -d --net="host" --pid="host" -p 9100:9100 --name=n
 export DEBIAN_FRONTEND=noninteractive
 apt update -y
 apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
+
 cat <<EOF >~/.vnc/xstartup
 #!/bin/bash
 
