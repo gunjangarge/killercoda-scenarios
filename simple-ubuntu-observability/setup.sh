@@ -42,8 +42,10 @@ docker run -d --name=prom -p 9090:9090 -v /tmp/setup/prometheus.yaml:/etc/promet
 docker run --cap-add=SYS_TIME -d --net="host" --pid="host" -p 9100:9100 --name=nodeexporter -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest
 
 # setup desktop
+export DEBIAN_FRONTEND=noninteractive
 apt update -y
-apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy 
+apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
+
 cat <<EOF >~/.vnc/xstartup
 #!/bin/bash
 
