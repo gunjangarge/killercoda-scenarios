@@ -1,4 +1,5 @@
 # Create config file for pushgw
+export PATH=$PATH:/usr/local/bin
 mkdir /tmp/setup ~/.vnc
 cat <<EOF >/tmp/setup/prometheus.yaml
 global:
@@ -49,11 +50,12 @@ apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc
 cat <<EOF >~/.vnc/xstartup
 #!/bin/bash
 
-PATH=/usr/bin:/usr/sbin
+PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4 &
 EOF
+
 sudo vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 websockify -D --web=/usr/share/novnc 9999 localhost:5901
 echo "Done" > /tmp/setup/done.txt
