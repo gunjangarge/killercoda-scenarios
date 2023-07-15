@@ -1,5 +1,6 @@
 # Create config file for pushgw
 export PATH=$PATH:/usr/local/bin
+
 mkdir /tmp/setup ~/.vnc
 cat <<EOF >/tmp/setup/prometheus.yaml
 global:

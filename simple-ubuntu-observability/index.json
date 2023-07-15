@@ -1,5 +1,5 @@
 {
-  "title": "simple observability",
+  "title": "grafana/prometheus with k8s",
   "details": {
     "intro": {
       "text": "intro.md",
