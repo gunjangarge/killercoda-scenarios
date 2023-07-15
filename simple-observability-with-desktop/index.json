@@ -1,0 +1,13 @@
+{
+  "title": "grafana/prometheus/k3s with desktop",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh",
+      "foreground": "progress.sh"
+    }
+  },
+  "backend": {
+    "imageid": "kubernetes-k3s-1node-4GB"
+  }
+}
