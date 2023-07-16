@@ -1,36 +1,36 @@
 # Create config file for pushgw
 export PATH=$PATH:/usr/local/bin
 mkdir /tmp/setup
-cat <<EOF >/tmp/setup/prometheus.yaml
-global:
-  scrape_interval: 15s
-  scrape_timeout: 1s
-  evaluation_interval: 15s
-scrape_configs:
-- job_name: push-gateway
-  metrics_path: /metrics
-  scheme: http
-  static_configs:
-  - targets: ['172.30.1.2:9091']
-    labels:
-      service: 'prom-pushgateway'
-- job_name: node-exporter
-  metrics_path: /metrics
-  scheme: http
-  static_configs:
-  - targets: ['172.30.1.2:9100']
-    labels:
-      service: 'node-exporter'
-EOF
+# cat <<EOF >/tmp/setup/prometheus.yaml
+# global:
+#   scrape_interval: 15s
+#   scrape_timeout: 1s
+#   evaluation_interval: 15s
+# scrape_configs:
+# - job_name: push-gateway
+#   metrics_path: /metrics
+#   scheme: http
+#   static_configs:
+#   - targets: ['172.30.1.2:9091']
+#     labels:
+#       service: 'prom-pushgateway'
+# - job_name: node-exporter
+#   metrics_path: /metrics
+#   scheme: http
+#   static_configs:
+#   - targets: ['172.30.1.2:9100']
+#     labels:
+#       service: 'node-exporter'
+# EOF
 
-cat <<EOF >/tmp/setup/datasource.yaml
-apiVersion: 1
-datasources:
- - name: Prometheus
-   type: prometheus
-   url: http://172.30.1.2:9090
-   version: 1
-EOF
+# cat <<EOF >/tmp/setup/datasource.yaml
+# apiVersion: 1
+# datasources:
+#  - name: Prometheus
+#    type: prometheus
+#    url: http://172.30.1.2:9090
+#    version: 1
+# EOF
 
 wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml -P /tmp/setup
 sed -i -e 's/        - --metric-resolution=15s/        - --metric-resolution=15s\n        - --kubelet-insecure-tls/g' /tmp/setup/components.yaml
@@ -38,8 +38,24 @@ kubectl apply -f /tmp/setup/components.yaml
 
 
 docker run -d --name=grafana -p 3000:3000 -v /tmp/setup/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yml grafana/grafana
-docker run -d --name pushgw -p 9091:9091 prom/pushgateway
-docker run -d --name=prom -p 9090:9090 -v /tmp/setup/prometheus.yaml:/etc/prometheus/prometheus.yml prom/prometheus
-docker run --cap-add=SYS_TIME -d --net="host" --pid="host" -p 9100:9100 --name=nodeexporter -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest
+#docker run -d --name pushgw -p 9091:9091 prom/pushgateway
+#docker run -d --name=prom -p 9090:9090 -v /tmp/setup/prometheus.yaml:/etc/prometheus/prometheus.yml prom/prometheus
+#docker run --cap-add=SYS_TIME -d --net="host" --pid="host" -p 9100:9100 --name=nodeexporter -v "/:/host:ro,rslave" quay.io/prometheus/node-exporter:latest
 
+# setup prometheus
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+cat <<EOF >/tmp/setup/values.yaml
+grafana:
+  enabled: false
+alertmanager:
+  enabled: false
+prometheus:
+  service:
+      type: NodePort
+EOF
+
+kubectl create ns monitoring
+helm install prom prometheus-community/kube-prometheus-stack -f /tmp/setup/values.yaml -n monitoring
+sleep 60
 echo "Done" > /tmp/setup/done.txt
