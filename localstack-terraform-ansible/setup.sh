@@ -154,6 +154,7 @@ EOF
 echo "alias aws='aws --endpoint-url=http://localhost:4566'" >> ~/.bash_aliases
 chmod +x ~/.bash_aliases
 source ~/.bash_aliases
+echo "source ~/.bash_aliases" >> ~/.bashrc
 
 # Done
 echo "Done" > /tmp/setup/done.txt
