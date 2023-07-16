@@ -8,6 +8,6 @@
     }
   },
   "backend": {
-    "imageid": "kubernetes-k3s-1node-4GB"
+    "imageid": "kubernetes-kubeadm-2nodes"
   }
 }
