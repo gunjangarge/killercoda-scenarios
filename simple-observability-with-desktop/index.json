@@ -1,5 +1,5 @@
 {
-  "title": "grafana/prometheus with k8s",
+  "title": "grafana/prometheus/k8s with desktop",
   "details": {
     "intro": {
       "text": "intro.md",
@@ -8,6 +8,6 @@
     }
   },
   "backend": {
-    "imageid": "kubernetes-kubeadm-1node"
+    "imageid": "kubernetes-kubeadm-2nodes"
   }
 }
