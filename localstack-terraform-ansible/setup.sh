@@ -151,10 +151,8 @@ cat <<EOF > ~/.aws/credentials
 aws_access_key_id = test
 aws_secret_access_key = test
 EOF
-echo "alias aws='aws --endpoint-url=http://localhost:4566'" >> ~/.bash_aliases
-chmod +x ~/.bash_aliases
-source ~/.bash_aliases
-echo "source ~/.bash_aliases" >> ~/.bashrc
+
+echo "alias aws='aws --endpoint-url=http://localhost:4566'" >> /etc/bash.bashrc
 
 # Done
 echo "Done" > /tmp/setup/done.txt
