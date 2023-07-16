@@ -58,4 +58,5 @@ EOF
 kubectl create ns monitoring
 helm install prom prometheus-community/kube-prometheus-stack -f /tmp/setup/values.yaml -n monitoring
 sleep 60
+
 echo "Done" > /tmp/setup/done.txt
