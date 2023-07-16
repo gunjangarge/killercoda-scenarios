@@ -1,4 +1,5 @@
 export PATH=$PATH:/usr/local/bin
+
 mkdir /tmp/setup ~/.vnc
 
 # setup metrics server
