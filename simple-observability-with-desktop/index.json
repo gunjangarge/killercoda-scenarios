@@ -1,5 +1,5 @@
 {
-  "title": "grafana/prometheus/k3s with desktop",
+  "title": "grafana/prometheus/k8s with desktop",
   "details": {
     "intro": {
       "text": "intro.md",
