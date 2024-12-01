@@ -9,6 +9,7 @@ curl -sfL https://get.k3s.io | sh -
 # install vscode
 export DEBIAN_FRONTEND=noninteractive
 wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb
+echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
 sudo apt install -y ./vscode.deb
 
 # install terraform
