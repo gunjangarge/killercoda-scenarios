@@ -1,1 +1,1 @@
-Local stack setup with terraform, ansible and aws cli v2
+softwares installed are - desktop k3s localstack terraform ansible awscli vscode
