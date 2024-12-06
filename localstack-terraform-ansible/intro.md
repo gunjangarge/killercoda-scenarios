@@ -6,3 +6,5 @@ softwares installed are -
 * ansible 
 * awscli 
 * vscode
+* python 3.8
+* git
