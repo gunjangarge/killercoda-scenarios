@@ -469,5 +469,8 @@ StartupNotify=false
 EOF
 chmod +x /root/Desktop/VisualStudioCode.desktop
 
+cd 
+bash
+
 # Done
 echo "Done" > /tmp/setup/done.txt
