@@ -438,6 +438,7 @@ apt update -y
 apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
 
 mkdir ~/.vnc
+
 cat <<EOF > ~/.vnc/xstartup
 #!/bin/bash
 
@@ -449,6 +450,7 @@ EOF
 
 sudo vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 websockify -D --web=/usr/share/novnc 9999 localhost:5901
+
 
 # vscode shortcut
 cat << EOF > /root/Desktop/VisualStudioCode.desktop
