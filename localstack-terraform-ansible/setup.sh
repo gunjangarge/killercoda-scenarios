@@ -469,7 +469,7 @@ StartupNotify=false
 EOF
 chmod +x /root/Desktop/VisualStudioCode.desktop
 
-cd 
+cd /root/
 bash
 
 # Done
