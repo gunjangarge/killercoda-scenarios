@@ -9,6 +9,7 @@ curl -sfL https://get.k3s.io | sh -
 # install vscode
 export DEBIAN_FRONTEND=noninteractive
 wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb
+echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
 sudo apt install -y ./vscode.deb
 
 # install terraform
@@ -18,9 +19,8 @@ apt update -y
 apt-get install terraform -y
 
 # install ansible
-apt-add-repository ppa:ansible/ansible
-apt update -y
-apt install ansible -y
+python3 -m pip install --user ansible
+sudo apt install ansible -y
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
@@ -432,11 +432,14 @@ cat <<EOF > /tmp/vnc.html
   </div>
 </body>
 EOF
+
 export DEBIAN_FRONTEND=noninteractive
 apt update -y
 apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
 
-cat <<EOF >~/.vnc/xstartup
+mkdir ~/.vnc
+
+cat <<EOF > ~/.vnc/xstartup
 #!/bin/bash
 
 PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin
@@ -448,6 +451,21 @@ EOF
 sudo vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 websockify -D --web=/usr/share/novnc 9999 localhost:5901
 
+
+# vscode shortcut
+cat << EOF > /root/Desktop/VisualStudioCode.desktop
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=VisualStudioCode
+Comment=Code Editing. Redefined.
+Exec=/usr/share/code/code %F --no-sandbox --user-data-dir=/tmp/vscode
+Icon=vscode
+Path=
+Terminal=false
+StartupNotify=false
+EOF
+chmod +x /root/Desktop/VisualStudioCode.desktop
 
 # Done
 echo "Done" > /tmp/setup/done.txt
