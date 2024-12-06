@@ -448,6 +448,8 @@ unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4 &
 EOF
 
+cp /tmp/vnc.html /usr/share/novnc/vnc.html
+
 sudo vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 websockify -D --web=/usr/share/novnc 9999 localhost:5901
 
