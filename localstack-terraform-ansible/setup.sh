@@ -20,7 +20,7 @@ apt-get install terraform -y
 
 # install ansible
 python3 -m pip install --user ansible
-sudo apt install ansible
+sudo apt install ansible -y
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
