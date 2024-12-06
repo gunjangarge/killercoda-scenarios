@@ -436,6 +436,7 @@ export DEBIAN_FRONTEND=noninteractive
 apt update -y
 apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
 
+mkdir ~/.vnc
 cat <<EOF > ~/.vnc/xstartup
 #!/bin/bash
 
@@ -461,6 +462,7 @@ Path=
 Terminal=false
 StartupNotify=false
 EOF
+chmod +x /root/Desktop/VisualStudioCode.desktop
 
 # Done
 echo "Done" > /tmp/setup/done.txt
