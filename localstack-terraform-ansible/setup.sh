@@ -18,7 +18,6 @@ Pin-Priority: -1
 ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
 
 # install misc 
-apt-get update -y
 apt-get install -y gnupg software-properties-common
 
 # install k3s
