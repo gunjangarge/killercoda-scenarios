@@ -1,5 +1,5 @@
 softwares installed are - 
-* [sharable desktop]({{TRAFFIC_HOST1_9999}}/vnc.html?resize=remote) 
+* [sharable desktop]({{TRAFFIC_HOST1_9999}}/vnccustom.html?resize=remote) 
 * k3s 
 * localstack 
 * terraform 
