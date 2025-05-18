@@ -1,26 +1,33 @@
 mkdir /tmp/setup ~/.aws
+export DEBIAN_FRONTEND=noninteractive
+
+# vscode
+wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb
+echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
+
+# terraform
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
 
 # install misc 
-apt-get update -y && sudo apt-get install -y gnupg software-properties-common
+apt-get update -y
+apt-get install -y gnupg software-properties-common
 
 # install k3s
 curl -sfL https://get.k3s.io | sh -
 
 # install vscode
-export DEBIAN_FRONTEND=noninteractive
-wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb
-echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
 sudo apt install -y ./vscode.deb
 
 # install terraform
-wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
-apt update -y
 apt-get install terraform -y
 
 # install ansible
 python3 -m pip install --user ansible
 sudo apt install ansible -y
+
+# intall xfce desktop
+apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
@@ -432,10 +439,6 @@ cat <<EOF > /tmp/vnc.html
   </div>
 </body>
 EOF
-
-export DEBIAN_FRONTEND=noninteractive
-apt update -y
-apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
 
 mkdir ~/.vnc
 
