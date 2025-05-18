@@ -177,7 +177,7 @@ echo "alias aws='aws --endpoint-url=http://localhost:4566'" >> ~/.bashrc
 
 # setup desktop
 
-cat <<EOF > /tmp/vnc.html
+cat <<EOF > /tmp/vnccustom.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -455,7 +455,7 @@ unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4
 EOF
 
-cp /tmp/vnc.html /usr/share/novnc/vnc.html
+cp /tmp/vnccustom.html /usr/share/novnc/vnccustom.html
 
 chmod +x ~/.vnc/xstartup 
 
