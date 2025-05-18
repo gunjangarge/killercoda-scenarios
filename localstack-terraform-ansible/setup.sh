@@ -31,7 +31,7 @@ python3 -m pip install --user ansible
 sudo apt install ansible -y
 
 # intall xfce desktop
-apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox
+apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox dbus-x11
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
@@ -459,7 +459,7 @@ cp /tmp/vnc.html /usr/share/novnc/vnc.html
 
 chmod +x ~/.vnc/xstartup 
 
-sudo vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
+vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 websockify -D --web=/usr/share/novnc 9999 localhost:5901
 
 
