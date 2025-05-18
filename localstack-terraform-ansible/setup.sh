@@ -441,7 +441,7 @@ cat <<EOF > ~/.vnc/xstartup
 PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
-exec startxfce4 &
+exec startxfce4
 EOF
 
 cp /tmp/vnc.html /usr/share/novnc/vnc.html
