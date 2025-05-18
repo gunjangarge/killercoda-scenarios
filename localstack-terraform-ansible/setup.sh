@@ -355,7 +355,7 @@ cat <<EOF > /tmp/vnc.html
         document.getElementById('machineRebootButton').onclick = machineReboot;
         document.getElementById('machineResetButton').onclick = machineReset;
 
-        WebUtil.init_logging(WebUtil.getConfigVar('logging', 'warn'));
+        // WebUtil.init_logging(WebUtil.getConfigVar('logging', 'warn'));
         document.title = WebUtil.getConfigVar('title', 'Remote Desktop');
         // By default, use the host and port of server that served this file
         var host = WebUtil.getConfigVar('host', window.location.hostname);
