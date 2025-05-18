@@ -1,10 +1,6 @@
 mkdir /tmp/setup ~/.aws
 export DEBIAN_FRONTEND=noninteractive
 
-# vscode
-wget https://go.microsoft.com/fwlink/?LinkID=760868 -O vscode.deb
-echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
-
 # terraform
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
@@ -15,9 +11,6 @@ apt-get install -y gnupg software-properties-common
 
 # install k3s
 curl -sfL https://get.k3s.io | sh -
-
-# install vscode
-sudo apt install -y ./vscode.deb
 
 # install terraform
 apt-get install terraform -y
@@ -461,14 +454,11 @@ websockify -D --web=/usr/share/novnc 9999 localhost:5901
 cat << EOF > /root/Desktop/VisualStudioCode.desktop
 [Desktop Entry]
 Version=1.0
-Type=Application
-Name=VisualStudioCode
+Type=Link
+Name=vscode
 Comment=Code Editing. Redefined.
-Exec=/usr/share/code/code %F --no-sandbox --user-data-dir=/tmp/vscode
-Icon=vscode
-Path=
-Terminal=false
-StartupNotify=false
+Icon=accessories-text-editor
+URL=https://vscode.dev
 EOF
 chmod +x /root/Desktop/VisualStudioCode.desktop
 
