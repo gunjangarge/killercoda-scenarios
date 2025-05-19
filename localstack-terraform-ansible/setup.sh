@@ -31,7 +31,7 @@ python3 -m pip install --user ansible
 sudo apt install ansible -y
 
 # intall xfce desktop
-apt install -y xfce4 tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox dbus-x11 xfce4-terminal mousepad
+apt install -y xfce4 xfce4-goodies tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer novnc python3-websockify python3-numpy firefox dbus-x11
 
 # run localstack
 docker run -d --name=localstack -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
@@ -462,20 +462,20 @@ chmod +x ~/.vnc/xstartup
 vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 websockify -D --web=/usr/share/novnc 9999 localhost:5901
 
-# vscode shortcut
-cat << EOF > /root/Desktop/terminal.desktop
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=terminal
-Comment=Terminal
-Exec=xfce4-terminal
-Icon=org.xfce.terminal
-Path=
-Terminal=false
-StartupNotify=false
-EOF
-chmod +x /root/Desktop/terminal.desktop
+# terminal shortcut
+# cat << EOF > /root/Desktop/terminal.desktop
+# [Desktop Entry]
+# Version=1.0
+# Type=Application
+# Name=terminal
+# Comment=Terminal
+# Exec=xfce4-terminal
+# Icon=org.xfce.terminal
+# Path=
+# Terminal=false
+# StartupNotify=false
+# EOF
+# chmod +x /root/Desktop/terminal.desktop
 
 # vscode shortcut
 cat << EOF > /root/Desktop/VisualStudioCode.desktop
