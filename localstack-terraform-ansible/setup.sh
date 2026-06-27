@@ -479,7 +479,7 @@ websockify -D --web=/usr/share/novnc 9999 localhost:5901
 
 wget -L -O code.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
 echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selection
-sudo apt install ./code.deb 
+sudo apt install ./code.deb -y
 
 # vscode shortcut
 cat << EOF > /root/Desktop/VisualStudioCode.desktop
