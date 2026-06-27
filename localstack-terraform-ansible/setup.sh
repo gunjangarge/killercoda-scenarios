@@ -477,15 +477,22 @@ websockify -D --web=/usr/share/novnc 9999 localhost:5901
 # EOF
 # chmod +x /root/Desktop/terminal.desktop
 
+wget -L -O code.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
+echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selection
+sudo apt install ./code.deb 
+
 # vscode shortcut
 cat << EOF > /root/Desktop/VisualStudioCode.desktop
 [Desktop Entry]
 Version=1.0
-Type=Link
-Name=vscode
+Type=Application
+Name=Visual Studio Code
 Comment=Code Editing. Redefined.
-Icon=accessories-text-editor
-URL=https://vscode.dev
+Icon=vscode
+Exec=/usr/share/code/code --no-sandbox --user-data-dir=/tmp %F
+Path=
+Terminal=false
+StartupNotify=false
 EOF
 chmod +x /root/Desktop/VisualStudioCode.desktop
 
